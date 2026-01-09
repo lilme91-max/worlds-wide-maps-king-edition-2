@@ -1,0 +1,263 @@
+<!DOCTYPE html><html><head>
+    <title>KING MAPS PRO | COMMAND</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> <style>
+        body { margin: 0; padding: 0; background: #000; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        #map { height: 100vh; width: 100%; transition: all 0.5s ease; }
+    /* SLIDE-IN SIDEBAR */
+     #sideBar { position: fixed; top: 0; left: -150px; 
+        /* Hidden by default */
+        width: 140px; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; transition: 0.4s; border-right: 2px solid gold; display: flex; flex-direction: column; padding: 20px 10px; gap: 15px;} .app-link { background: #111; color: gold; border: 
+            1px solid gold; padding: 12px; border-radius: 8px; 
+            text-align: center; font-size: 12px; font-weight: bold; text-decoration: 
+            none; }
+ /* UI OVERLAYS */
+  .menu-trigger {position: fixed; top: 20px; left: 20px; z-index: 1001;
+    background: gold; color: black; padding: 10px 15px; 
+    border-radius: 50%; font-weight: bold; cursor: pointer; }
+ .bottom-nav { position: fixed; bottom: 10px; left: 0; width: 100%;
+     display: flex; justify-content: space-around; z-index: 1001; padding-bottom: 10px; } 
+     .btn-main { background: black; color: gold; border: 2px solid gold; padding: 15px; border-radius: 12px; font-weight: bold; flex: 1; margin: 0 5px; 
+        font-size: 11px; text-align: center; } .btn-sos { background: red !important; color: white !important; border: 2px solid white !important; } </style></head><body>
+ <div id="sideBar">
+    <h3 style="color:white; font-size: 14px; text-align: center;">COMMERCE</h3>
+    <a href="https://www.uber.com" class="app-link">UBER</a>
+    <a href="https://www.jumia.ug" class="app-link" style="color: #ff9900; border-color: #ff9900;">JUMIA</a>
+    <a href="https://www.amazon.com" class="app-link" style="color: #ff9900; border-color: #ff9900;">AMAZON</a>
+     <a href="https://www.jiji.ug" class="app-link" style="color: #37b848; border-color: #37b848;">JIJI</a> <button class="app-link" onclick="toggleMenu()" style="margin-top: 20px; background: red; color: white;">CLOSE</button>
+    </div> <div class="menu-trigger" onclick="toggleMenu()">☰</div>
+<div id="map"></div>
+ <div class="bottom-nav">
+    <div class="btn-main" onclick="map.locate({setView: true, maxZoom: 18})">GPS</div> <div class="btn-main" onclick="toggle3D()">3D TILT</div>
+    <div class="btn-main" onclick="toggleTraffic()">TRAFFIC</div> 
+    <div class="btn-main btn-sos" onclick="triggerSOS()">SOS</div> </div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script> var map = L.map('map', { zoomControl: false }).setView([0.3476, 32.5825], 15);
+     // SATELLITE & TERRAIN LAYERS        
+     var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}').addTo(map); var traffic = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { opacity: 0.4 });
+ // SIDEBAR TOGGLE        
+ function toggleMenu() { var side = document.getElementById('sideBar'); if(side.style.left === "0px") { side.style.left = "-150px"; } else { side.style.left = "0px"; }
+ }
+ // 3D TILT        
+ var is3D = false; function toggle3D() { var el = document.getElementById('map'); 
+ if(!is3D) { el.style.transform = "perspective(800px) rotateX(45deg) scale(1.1)"; is3D = true;
+ 1} else { el.style.transform = "none"; is3D = false; }
+ }
+ // TRAFFIC LAYER       
+ function toggleTraffic() { if(map.hasLayer(traffic)) { map.removeLayer(traffic); } else { traffic.addTo(map); }
+ }
+ // SOS SYSTEM        
+ function triggerSOS() { document.body.style.background = "red";
+  alert("EMERGENCY SOS: Broadcasting Location to King Grid...");
+   map.locate({setView: true, maxZoom: 19}); setTimeout(() => { document.body.style.background = "black"; }, 3000);} 
+</script>
+</body><div id="sideBar">
+    <h3 style="color:white; font-size: 14px; text-align: center;">NY LAND INTEL</h3>
+    <a href="https://experience.arcgis.com/experience/d826b115c87841d491c2b41fcb175305" class="app-link" style="color:cyan; border-color:cyan;">NYC TAX MAPS</a>
+    <a href="https://www.zillow.com/ny/land/" class="app-link" style="color:cyan; border-color:cyan;">NY LAND SALES</a>
+    <hr style="border: 0.5px solid #333; width: 100%;">
+    <h3 style="color:white; font-size: 14px; text-align: center;">COMMERCE</h3>
+    <a href="https://www.uber.com" class="app-link">UBER</a>
+    <a href="https://www.jumia.ug" class="app-link" style="color: #ff9900; border-color: #ff9900;">JUMIA</a>
+    <button class="app-link" onclick="toggleMenu()" style="margin-top: 20px; background: red; color: white;">CLOSE</button>
+</div>
+
+<script>
+    // Change the setView coordinates to New York City [40.7128, -74.0060]
+    var map = L.map('map', { zoomControl: false }).setView([40.7128, -74.0060], 12);
+    
+    // ... keep the rest of your layers and functions ...
+</script>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worlds Wide Maps | Kings Edition</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { margin: 0; background: #050505; color: #00f2ff; font-family: 'Inter', sans-serif; }
+        #map { height: 85vh; width: 100%; border-bottom: 2px solid #00f2ff; }
+        .hud { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: #0a0a0a; }
+        .btn { background: transparent; border: 1px solid #00f2ff; color: #00f2ff; padding: 10px 20px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .btn:hover { background: #00f2ff; color: #000; }
+        .status { font-size: 0.8rem; text-shadow: 0 0 10px #00f2ff; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div class="hud">
+        <div>
+            <div class="status">SYSTEM: ACTIVE // NODES: 3,400</div>
+            <div style="font-size: 1.5rem; font-weight: bold;">ALAJERA COMMAND</div>
+        </div>
+        <div class="controls">
+            <button class="btn" onclick="setLayer('terrain')">Terrain</button>
+            <button class="btn" onclick="setLayer('sat')">Satellite</button>
+            <button class="btn" onclick="toggleFleet()">Toggle Fleet</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([0.3476, 32.5825], 13); // Centered on Kampala/Global Start
+
+        var satellite = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            subdomains:['mt0','mt1','mt2','mt3']
+        }).addTo(map);
+
+        var terrain = L.tileLayer('https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+            subdomains:['mt0','mt1','mt2','mt3']
+        });
+
+        function setLayer(type) {
+            if(type == 'terrain') { map.removeLayer(satellite); terrain.addTo(map); }
+            else { map.removeLayer(terrain); satellite.addTo(map); }
+        }
+
+        // Simulating the 3,400 Global Robot Nodes
+        function toggleFleet() {
+            for (let i = 0; i < 50; i++) {
+                let lat = 0.3476 + (Math.random() - 0.5) * 0.1;
+                let lng = 32.5825 + (Math.random() - 0.5) * 0.1;
+                L.circle([lat, lng], { color: '#00f2ff', fillOpacity: 0.5, radius: 200 }).addTo(map);
+            }
+            alert("Fleet Simulation Injected: 3,400 Nodes Active.");
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ALAJERA COMMAND | GLOBAL NODES</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { margin: 0; background: #000; font-family: 'Courier New', monospace; overflow: hidden; }
+        #map { height: 90vh; width: 100vw; filter: brightness(0.8) contrast(1.2); }
+        .ui-overlay { position: absolute; top: 10px; left: 10px; z-index: 1000; width: 300px; background: rgba(0,0,0,0.8); border: 1px solid #00f2ff; padding: 15px; color: #00f2ff; }
+        input { background: #111; border: 1px solid #00f2ff; color: #fff; width: 100%; padding: 5px; margin-bottom: 10px; }
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+        button { background: #00f2ff; border: none; color: #000; padding: 5px; cursor: pointer; font-weight: bold; }
+        .bottom-bar { height: 10vh; background: #050505; border-top: 2px solid #00f2ff; display: flex; align-items: center; padding: 0 20px; color: #00f2ff; justify-content: space-between; }
+    </style>
+</head>
+<body>
+    <div class="ui-overlay">
+        <label>GEO-SEARCH ENGINE</label>
+        <input type="text" id="search" placeholder="ENTER COORDINATES OR CITY...">
+        <div class="btn-grid">
+            <button onclick="setMode('sat')">SATELLITE</button>
+            <button onclick="setMode('ter')">TERRAIN</button>
+        </div>
+    </div>
+    <div id="map"></div>
+    <div class="bottom-bar">
+        <div>STATUS: ENCRYPTED // NODE COUNT: 3,400</div>
+        <div style="font-size: 1.2rem; letter-spacing: 5px;">ALAJERA GEOSPATIAL</div>
+        <div>FUEL CELL: 98%</div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map', {zoomControl: false}).setView([0.3476, 32.5825], 13);
+        
+        var satLayer = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{ subdomains:['mt0','mt1','mt2','mt3'] }).addTo(map);
+        var terLayer = L.tileLayer('https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{ subdomains:['mt0','mt1','mt2','mt3'] });
+
+        function setMode(m) {
+            if(m == 'ter') { map.removeLayer(satLayer); terLayer.addTo(map); }
+            else { map.removeLayer(terLayer); satLayer.addTo(map); }
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ALAJERA | GLOBAL COMMAND SYSTEM</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root { --neon: #00f2ff; --bg: #050505; }
+        body { margin: 0; background: var(--bg); font-family: 'Orbitron', sans-serif; color: var(--neon); overflow: hidden; }
+        #map { height: 100vh; width: 100vw; filter: brightness(0.7) contrast(1.2) saturate(0.5); }
+        
+        /* Glass-morphism UI */
+        .overlay { position: absolute; z-index: 1000; background: rgba(0, 0, 0, 0.85); border: 1px solid var(--neon); backdrop-filter: blur(10px); box-shadow: 0 0 20px rgba(0, 242, 255, 0.2); }
+        
+        .header { top: 0; left: 0; width: 100%; padding: 10px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--neon); text-transform: uppercase; letter-spacing: 5px; }
+        
+        .search-panel { top: 80px; left: 20px; width: 320px; padding: 20px; border-radius: 5px; }
+        input { background: #111; border: 1px solid var(--neon); color: #fff; width: 90%; padding: 12px; margin-bottom: 15px; font-family: monospace; outline: none; }
+        
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        button { background: transparent; border: 1px solid var(--neon); color: var(--neon); padding: 10px; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.7rem; }
+        button:hover { background: var(--neon); color: #000; box-shadow: 0 0 15px var(--neon); }
+        
+        .footer { bottom: 0; width: 100%; padding: 10px; font-size: 0.7rem; border-top: 1px solid var(--neon); display: flex; gap: 20px; }
+        .glitch { animation: glitch 2s infinite; }
+        @keyframes glitch { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div class="overlay header">
+        <div class="glitch">● ALAJERA GEOSPATIAL COMMAND</div>
+        <div id="clock">00:00:00</div>
+    </div>
+
+    <div class="overlay search-panel">
+        <label style="font-size: 0.6rem; display: block; margin-bottom: 10px;">QUERY_LOCATION_DATABASE</label>
+        <input type="text" id="citySearch" placeholder="ENTER CITY NAME..." onkeypress="handleSearch(event)">
+        <div class="btn-group">
+            <button onclick="changeStyle('sat')">Sat_Optic</button>
+            <button onclick="changeStyle('ter')">Terr_Map</button>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <div class="overlay footer">
+        <div>STATUS: ENCRYPTED</div>
+        <div>NODES: 3,400 ACTIVE</div>
+        <div>H2_RESERVE: 94%</div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Setup Map
+        var map = L.map('map', { zoomControl: false }).setView([0.3476, 32.5825], 13);
+        
+        var satLayer = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', { subdomains:['mt0','mt1','mt2','mt3'] }).addTo(map);
+        var terLayer = L.tileLayer('https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', { subdomains:['mt0','mt1','mt2','mt3'] });
+
+        function changeStyle(type) {
+            if(type === 'ter') { map.removeLayer(satLayer); terLayer.addTo(map); }
+            else { map.removeLayer(terLayer); satLayer.addTo(map); }
+        }
+
+        // REAL SEARCH FUNCTION
+        async function handleSearch(e) {
+            if (e.key === 'Enter') {
+                const query = document.getElementById('citySearch').value;
+                const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`);
+                const data = await response.json();
+                if (data.length > 0) {
+                    map.flyTo([data[0].lat, data[0].lon], 13, { duration: 3 });
+                    L.circle([data[0].lat, data[0].lon], { color: '#00f2ff', radius: 500 }).addTo(map);
+                } else {
+                    alert("NODE NOT FOUND IN GLOBAL DATABASE");
+                }
+            }
+        }
+
+        // Live Clock
+        setInterval(() => {
+            document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+        }, 1000);
+    </script>
+</body>
+</html>
